@@ -1,0 +1,1055 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+WindowManager:
+    
+    #menu screen
+    MenuWindow:
+    
+    #game windows
+    StartWindow:
+    IntroWindow:
+    LookAroundWindow:
+    BagWindow:
+    OnFireWindow:
+    LavaWindow:
+    CreatureWindow:
+    DefeatedMonsterWindow:
+    WaterWindow:
+    SwimWindow:
+    IslandWindow:
+    ForestWindow:
+    HelpWindow:
+    TunnelWindow:
+    CongratulationsWindow:
+    NonGreedyWindow:
+    PathWindow:
+    TrappedWindow:
+    GenieWindow:
+    
+    #winning screens
+    InvisibilityWindow:
+    StrengthWindow:
+    FlightWindow:
+
+    #gameover windows
+    GameOverWindow:
+    MonsterOverWindow:
+    GreedOverWindow:
+    TooNiceWindow:
+    HeatWindow:
+    DrownWindow:
+    InnocentWindow:
+    FallWindow:
+    GuiltWindow:
+    ColdWindow:
+    GenieOverWindow:
+
+#menu screen
+<MenuWindow>:
+    name: "menu"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/background.png'
+
+    BoxLayout: 
+        orientation: "vertical"
+        pos_hint: {'center_x': 0.5, 'center_y':0.15}
+        size_hint: 0.25, 0.25
+
+
+        spacing:10
+
+        Button:
+            text:"Start Journey"
+            on_press: 
+                app.root.current = "start"
+            background_color: (123/255, 104/255, 238/255, 1) 	
+            background_normal: ''
+
+            Image:
+                source: 'images/Escape.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y + 310
+                size: 5000,5000
+                
+        Button:
+            text:"Exit"
+            on_press: app.stop() 
+            background_color: (184/255, 15/255, 10/255, 1) 
+            background_normal: ''
+        
+
+
+
+<StartWindow>
+    name: "start"
+    Label:
+        text: "Would you like to begin the game?"
+
+    Button:
+        text: 'Yes'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.497, 0.15
+        background_color: (7/255, 95/255, 38/255, 1) 
+        background_normal: ''
+        on_press: 
+            app.root.current = "intro"
+
+    Button:
+        text: 'No'
+        pos_hint: {'x': 0.5, 'y':0}
+        size_hint: 0.5, 0.15
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+        on_press: 
+            app.root.current = "menu"
+
+
+#game windows
+<IntroWindow>
+    name: 'intro'
+    Label: 
+        text: "You wake up in a dimly lit place. What do you decide to do?"
+
+    Button: 
+        text: 'Stay where you are \n and sleep'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current= 'monster'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+
+
+    Button: 
+        text: 'You realize you are wearing \n a backpack \n and you decide to dump its contents'
+        pos_hint: {'x': 0.33, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current= 'bag'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+    Button: 
+        text: 'You look around'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        halign: 'center'
+        valign: 'middle' 
+        on_press:
+            app.root.current = 'lookaround'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+<LookAroundWindow>
+    name: 'lookaround'
+    Label:
+        text: "You walk around and discover it is a dungeon. You walk till you see three paths. Which path do you take?"
+
+    Button: 
+        text: 'Left'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'lava'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+    Button: 
+        text: 'Middle'
+        pos_hint: {'x': 0.33, 'y':0}
+        size_hint: 0.3275, 0.15
+        on_press:
+            app.root.current = 'water'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Right'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        halign: 'center'
+        valign: 'middle' 
+        on_press:
+            app.root.current = 'creature'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+
+<LavaWindow>
+    name: 'lava'
+    Label: 
+        text:'When you entire the room it is steaming hot. To your surprise you see a pool full of lava in front of you.'
+    
+    Button:
+        text: 'Jump In'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.497, 0.15
+        on_press: 
+            app.root.current = 'heat'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Go Back'
+        pos_hint: {'x': 0.5, 'y':0}
+        size_hint: 0.5, 0.15  
+        on_press: 
+            app.root.current = 'path'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<BagWindow>
+    name: 'bag'
+    Label:
+        text: 'There is nothing in your bag except matches...what do you do?'
+
+    Button:
+        text: 'Light up matches'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.497, 0.15
+        on_press:
+            app.root.current = 'onfire'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Save them for later'
+        pos_hint: {'x': 0.5, 'y':0}
+        size_hint: 0.5, 0.15
+        on_press:
+            app.root.current = 'lookaround' #-->change
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<OnFireWindow>
+    name: 'onfire'
+    Label: 
+        text: "You light up your match, but you accidentally got the match to light up on your sweater.\nWhat will you do before the fire gets all over you?"
+
+    Button: 
+        text: 'You run to find a water source'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'heat'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+    Button: 
+        text: 'Stop. Drop. Roll.'
+        pos_hint: {'x': 0.33, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'congratulations'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+    Button: 
+        text: 'Take off sweater'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        halign: 'center'
+        valign: 'middle' 
+        on_press:
+            app.root.current = 'cold'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+<CreatureWindow>
+    name: 'creature'
+    Label:
+        text: 'You walk in through the path and you see a creature. The light is too dim to see who exactly the creature is.'
+
+    Button:
+        text: 'Greet Creature'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'nice'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+
+    Button:
+        text: 'Attack'
+        pos_hint: {'x': 0.25, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press: 
+            app.root.current = 'defeated'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+    Button:
+        text: 'Find something in backpack'
+        pos_hint: {'x': 0.50, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'bag'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+    Button: 
+        text: 'Run Back'
+        pos_hint: {'x': 0.75, 'y':0}
+        size_hint: 0.25, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'trapped'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+
+<DefeatedMonsterWindow>
+    name: 'defeated'
+    Label:
+        text: 'You attacked the creature with your bare hands. Good job, it was a monster. Sadly, the monster vanished. You look\n at the ground and see something shiny resembling gold, it was where the monster was formerly. What do you do?'
+
+    Button:
+        text: 'Pick it up'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.497, 0.15
+        on_press:
+            app.root.current = 'greed' 
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+    Button: 
+        text: 'Avoid it, and move ahead' 
+        pos_hint: {'x': 0.5, 'y':0}
+        size_hint: 0.5, 0.15
+        on_press: 
+            app.root.current = 'nongreedy'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+
+<WaterWindow>
+    name: 'water'
+    Label: 
+        text: 'You see a large pool of water. What do you do?'
+
+    Button:
+        text: 'Go Back'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.497, 0.15
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+        on_press: 
+            app.root.current = 'path'
+
+    Button:
+        text: 'Swim'
+        pos_hint: {'x': 0.5, 'y':0}
+        size_hint: 0.5, 0.15
+        on_press:
+            app.root.current = 'swim'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<SwimWindow>
+    name: 'swim'
+    Label:
+        text: 'As you swim through this water, you notice a piece of land in front of you.\n Through the way your bag got washed away. What do you do?'
+    
+    Button: 
+        text: 'Swim passed the land'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.497, 0.15
+        on_press:
+            app.root.current = 'drown'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Go onto the land'
+        pos_hint: {'x': 0.5, 'y':0}
+        size_hint: 0.5, 0.15
+        on_press:
+            app.root.current = 'island'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<IslandWindow>
+    name: 'island'
+    Label:
+        text: 'Your looking around the island. There is an underground tunnel and on the other side\n there is a path across a forest. Which way would you like to go?'
+
+    Button:
+        text: 'Underground'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        on_press:
+            app.root.current = 'tunnel'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Forest'
+        pos_hint: {'x': 0.33, 'y':0}
+        size_hint: 0.3275, 0.15
+        on_press:
+            app.root.current = 'forest'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Return to water'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        on_press:
+            app.root.current = 'drown'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<ForestWindow>
+    name: 'forest'
+    Label:
+        text: 'You walk in through the forest and you see a creature. The light is too dim to see what exactly the creature is.'
+
+    Button:
+        text: 'Greet Creature'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'help'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+            
+
+    Button:
+        text: 'Attack'
+        pos_hint: {'x': 0.33, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:  
+            app.root.current = 'innocent'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Run Back'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press: 
+            app.root.current = 'fall'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+            
+<HelpWindow>
+    name: 'help'
+    Label:
+        text: "The creature asks for help for his human friend that is dying."
+
+    Button:
+        text: "Runaway"
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'fall'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Let them die, not my problem'
+        pos_hint: {'x': 0.33, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'guilt'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+
+    Button:
+        text: 'Help'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'genie'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<NonGreedyWindow>
+    name: 'nongreedy'
+    Label:
+        text: "A genie poofs out of nowhere. He explains this is a test to gift someone superpowers.\n You passed it because of your great skill, and non greediness. You have 4 options, which option do you pick?"
+    Button: 
+        text: 'Escape'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'genieover'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Invisibility'
+        pos_hint: {'x': 0.25, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'invisibility'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Strength'
+        pos_hint: {'x': 0.50, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'strength'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Flight'
+        pos_hint: {'x': 0.75, 'y':0}
+        size_hint: 0.25, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'flight'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<GenieWindow>
+    name: 'genie'
+    Label: 
+        text: 'You go see the dying human. As you were assisting them, the human morphs into a genie.\n The genie says this was an assessment for them to see if you are right person to become a superhero.\n You clearly proved him right, since you tried to help someone in need, good job!\n He grants you 4 options, which option do you pick?'
+    
+    Button: 
+        text: 'Escape'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'genieover'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Invisibility'
+        pos_hint: {'x': 0.25, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'invisibility'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Strength'
+        pos_hint: {'x': 0.50, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'strength'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Flight'
+        pos_hint: {'x': 0.75, 'y':0}
+        size_hint: 0.25, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'flight'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<TunnelWindow>
+    name: 'tunnel'
+    Label: 
+        text: "You go in the underground tunnel, and find a dying human."
+
+    Button:
+        text: "Runaway"
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'fall'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Let them die, not my problem'
+        pos_hint: {'x': 0.3275, 'y':0}
+        size_hint: 0.33, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'guilt'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+
+    Button:
+        text: 'Help'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'genie'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<InvisibilityWindow>
+    name: 'invisibility'
+    Label: 
+        text: "Your body feels transparent a feeling as if some of your body parts aren't existent,\n it is an odd but soothing feeling. You go through the walls of the dungeon and escape, congratulations."
+
+    Button: 
+        text: "Play Again"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (7/255, 95/255, 38/255, 1) 
+        background_normal: ''
+
+<StrengthWindow>
+    name: 'strength'
+    Label: 
+        text: 'Your body surges with strength, you start getting buffer and bulkier.\n You smash the wall with your strength, and make your escape out of the dungeon, congratulations!'
+
+    Button: 
+        text: "Play Again"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (7/255, 95/255, 38/255, 1) 
+        background_normal: ''
+
+
+<FlightWindow>
+    name: 'flight'
+    Label: 
+        text: 'You feel light all of a sudden, you start floating. You fly out the dungeon and escape!'
+
+    Button: 
+        text: "Play Again"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (7/255, 95/255, 38/255, 1) 
+        background_normal: ''
+
+<PathWindow>
+    name: 'path'
+    Label:
+        text: 'Which path do you take?'
+    
+    Button: 
+        text: 'Left'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'lava'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+
+    Button: 
+        text: 'Middle'
+        pos_hint: {'x': 0.33, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'water'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Right'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        halign: 'center'
+        valign: 'middle' 
+        on_press:
+            app.root.current = 'creature'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+    
+
+<TrappedWindow>
+    name: 'trapped'
+    Label:
+        text: "You attempt to go back to the path but as you step closer, a door comes sliding in and you are trapped."
+
+    Button:
+        text: 'Greet Creature'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'nice'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Attack'
+        pos_hint: {'x': 0.33, 'y':0}
+        size_hint: 0.3275, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press: 
+            app.root.current = 'defeated'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button:
+        text: 'Find something in backpack'
+        pos_hint: {'x': 0.66, 'y':0}
+        size_hint: 0.35, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'bag'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+
+#game over windows
+<MonsterOverWindow>
+    name: 'monster'
+    Label: 
+        text: 'Game Over! You just got eaten by a monster while you were sleeping!'
+
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
+<GameOverWindow>
+    name: 'gameover'
+    Label:
+        text: "Game Over!"
+
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
+<GreedOverWindow>
+    name: 'greed'
+    Label:
+        text: "Your hands burn. And you slowly disintegrate. That was poison left by the monster not gold you fool! Game Over!"
+
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
+<TooNiceWindow>
+    name: 'nice'
+    Label:
+        text: "You greet the creature. When you get closer to the creature, you realize it is a monster.\n Sadly, you realized too late and you just got eaten. Don't be too nice next time. Game Over!"
+
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
+<HeatWindow>
+    name: 'heat'
+    Label: 
+        text: 'Game Over, the heat burned you into crisps!'
+
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'   
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
+
+<DrownWindow>
+    name: 'drown'
+    Label: 
+        text: "You don't have enough stamina. You drown from swimming. Game Over!"
+
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'   
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
+<InnocentWindow>
+    name: 'innocent'
+    Label: 
+        text: "That was an innocent creature asking you for help, but you killed it.\n You kill yourself since you can't live with this guilt. Game Over!"
+        
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'   
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
+<FallWindow>
+    name: 'fall'
+    Label: 
+        text: "You fall over a tree branch and your all bruised up. You bled to death. Game Over."
+        
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'  
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
+<GuiltWindow>
+    name: 'guilt'
+    Label: 
+        text: "You left the human to die on his own, you are the reason for his death.\n You can't believe you can do such a thing, and you kill yourself since you can't live with this guilt. Game Over!"
+        
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''  
+
+<ColdWindow>
+    name: 'cold'
+    Label: 
+        text: "Without your sweater, you start feeling cold. Next thing you know, you get hypothermia and die. Game Over!"
+        
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''  
+
+<CongratulationsWindow>
+    name: 'congratulations'
+    Label:
+        text: "Congratulations, you aren't in flames anymore. Don't try to kill yourself next time. A genie poofs out of nowhere,\n congratulating your intelligence and explaining that this was a test, he gives you 4 options. Which would you pick?"
+   
+    Button: 
+        text: 'Escape'
+        pos_hint: {'x': 0, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press: 
+            app.root.current = 'genieover'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Invisibility'
+        pos_hint: {'x': 0.25, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'invisibility'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Strength'
+        pos_hint: {'x': 0.50, 'y':0}
+        size_hint: 0.248, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'strength'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+    Button: 
+        text: 'Flight'
+        pos_hint: {'x': 0.75, 'y':0}
+        size_hint: 0.25, 0.15
+        halign: 'center'
+        valign: 'middle'
+        on_press:
+            app.root.current = 'flight'
+        background_color: (48/255, 84/255, 150/255, 1) 
+        background_normal: ''
+        halign: 'center'
+        valign: 'middle'
+
+<GenieOverWindow>
+    name: 'genieover'
+    Label: 
+        text: "The genie kills you since you aren't the right person after all. What a scaredy cat! Game Over!"
+
+    Button: 
+        text: "Retry"
+        on_press: 
+            app.root.current = "menu"    
+            app.root.transition = FadeTransition(duration=0.15)
+        size_hint_y: None
+        height: '48dp'
+        background_color: (184/255, 15/255, 10/255, 1) 
+        background_normal: ''
+
